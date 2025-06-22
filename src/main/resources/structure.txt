@@ -1,0 +1,48 @@
+task-management-api/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── taskapi/
+│   │   │               ├── TaskManagementApiApplication.java
+│   │   │               ├── config/
+│   │   │               │   └── SwaggerConfig.java
+│   │   │               ├── controller/
+│   │   │               │   └── TaskController.java
+│   │   │               ├── dto/
+│   │   │               │   ├── TaskCreateDto.java
+│   │   │               │   ├── TaskResponseDto.java
+│   │   │               │   ├── TaskUpdateDto.java
+│   │   │               │   └── ErrorResponseDto.java
+│   │   │               ├── entity/
+│   │   │               │   └── Task.java
+│   │   │               ├── enums/
+│   │   │               │   └── TaskStatus.java
+│   │   │               ├── exception/
+│   │   │               │   ├── TaskNotFoundException.java
+│   │   │               │   └── GlobalExceptionHandler.java
+│   │   │               ├── mapper/
+│   │   │               │   └── TaskMapper.java
+│   │   │               ├── repository/
+│   │   │               │   └── TaskRepository.java
+│   │   │               └── service/
+│   │   │                   ├── TaskService.java
+│   │   │                   └── impl/
+│   │   │                       └── TaskServiceImpl.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── db/
+│   │           └── migration/
+│   │               └── V1__Create_tasks_table.sql
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── example/
+│                   └── taskapi/
+│                       └── controller/
+│                           └── TaskControllerTest.java
+├── Dockerfile
+├── docker-compose.yml
+├── pom.xml
+└── README.md
