@@ -1,5 +1,6 @@
-ALTER TABLE tasks ADD CONSTRAINT chk_task_status
-    CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED'));
-
-ALTER TABLE tasks ADD CONSTRAINT chk_task_title_length
-    CHECK (char_length(title) <= 100 AND char_length(title) > 0);
+-- -- Add constraints for task status and title validation
+-- ALTER TABLE tasks ADD CONSTRAINT chk_task_status
+--     CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED'));
+--
+-- ALTER TABLE tasks ADD CONSTRAINT chk_task_title_length
+--     CHECK (char_length(title) <= 100 AND char_length(title) > 0);

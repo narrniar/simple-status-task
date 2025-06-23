@@ -10,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "tasks")
@@ -23,7 +25,8 @@ public class Task {
      * Unique identifier for the task using UUID
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
+    @SequenceGenerator(name = "task_seq", sequenceName = "task_sequence", allocationSize = 1)
     private Long id;
 
     /**
@@ -60,7 +63,7 @@ public class Task {
      */
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
+    private ZonedDateTime updatedAt;
 
     /**
      * Constructor for creating a new task with title, description and status
@@ -69,5 +72,16 @@ public class Task {
      * @param description Task description
      * @param status Task status
      */
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now(ZoneId.of("Asia/Almaty"));
+        updatedAt = ZonedDateTime.now(ZoneId.of("Asia/Almaty"));
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = ZonedDateTime.now(ZoneId.of("Asia/Almaty"));
+    }
 
 }

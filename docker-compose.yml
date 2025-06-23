@@ -6,10 +6,12 @@ services:
     container_name: task-postgres
     environment:
       POSTGRES_DB: taskdb
-      POSTGRES_USER: task
-      POSTGRES_PASSWORD: task
+      POSTGRES_USER: taskuser
+      POSTGRES_PASSWORD: taskpass
+      TZ: Asia/Almaty
+      PGTZ: Asia/Almaty
     ports:
-      - "5432:5432"  # This port mapping allows connection from IntelliJ
+      - "5435:5432"  # This port mapping allows connection from IntelliJ
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./src/main/resources/db:/docker-entrypoint-initdb.d
@@ -20,6 +22,7 @@ services:
       retries: 5
     networks:
       - task-network
+    restart: unless-stopped
 
   app:
     build:
@@ -29,8 +32,10 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/taskdb
-      SPRING_DATASOURCE_USERNAME: task
-      SPRING_DATASOURCE_PASSWORD: task
+      SPRING_DATASOURCE_USERNAME: taskuser
+      SPRING_DATASOURCE_PASSWORD: taskpass
+      TZ: Asia/Almaty
+      JAVA_TOOL_OPTIONS: -Duser.timezone=Asia/Almaty
     ports:
       - "8080:8080"
     depends_on:
